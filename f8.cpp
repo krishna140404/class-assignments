@@ -35,7 +35,23 @@ int main(int argc, char* argv[])
     strncpy(myArgs.filename, argv[4], MAX_LENGTH - 1);
     myArgs.filename[MAX_LENGTH - 1] = '\0';
 
+    char fullPath[MAX_LENGTH + MAX_LENGTH];
+    printf(fullPath, sizeof(fullPath), "%s/%s", myArgs.directoryPath, myArgs.filename);
 
+    FILE* outFile = fopen(myArgs.filename, "w");
+    if (!outFile)
+    {
+        printf("Error: Failed to create file");
+        return 1;
+    }
+
+    for (int i = 0; i < myArgs.howMany; ++i)
+    {
+        fprintf(outFile, "%s\n", myArgs.theText);
+    }
+
+    fclose(outFile);
+    printf("Text file created successfully :");
 
 
     return 0;
