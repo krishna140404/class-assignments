@@ -1,29 +1,35 @@
+/*
+* FILE : f8.cpp
+* PROJECT : focus Assignment 8
+* PROGRAMMER : krishna kachhiapatel
+* FIRST VERSION : 2024-03-25
+* DESCRIPTION : Write a program to give you practice at working with C-style strings, files, command-line
+                arguments, and structs
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+// declaring max length at 21 
 #define MAX_LENGTH 21
 
 #pragma warning (disable:4996)
-
+// creating structure called my data 
 struct MyData
 {
     int howMany;
     char theText[MAX_LENGTH];
     char directoryPath[MAX_LENGTH];
     char filename[MAX_LENGTH];
-
 };
 
 int main(int argc, char* argv[])
 {
-
     if (argc != 5)
     {
-        fprintf(stderr, "Error: Incorrect number of arguments. Please provide exactly four arguments.\n");
+        printf("Error: Incorrect number of arguments. Please provide exactly four arguments.\n");
         return 1;
     }
-
 
     // Parse arguments into MyData struct
     struct MyData myArgs;
@@ -35,10 +41,11 @@ int main(int argc, char* argv[])
     strncpy(myArgs.filename, argv[4], MAX_LENGTH - 1);
     myArgs.filename[MAX_LENGTH - 1] = '\0';
 
-    char fullPath[MAX_LENGTH + MAX_LENGTH];
-    printf(fullPath, sizeof(fullPath), "%s/%s", myArgs.directoryPath, myArgs.filename);
+    FILE* outFile;
+    char fullPath[100];
+    sprintf(fullPath, "%s/%s", myArgs.directoryPath, myArgs.filename);
 
-    FILE* outFile = fopen(myArgs.filename, "w");
+    outFile = fopen(fullPath, "w");
     if (!outFile)
     {
         printf("Error: Failed to create file");
@@ -51,8 +58,7 @@ int main(int argc, char* argv[])
     }
 
     fclose(outFile);
-    printf("Text file created successfully :");
-
+    printf("Text file created successfully.\n");
 
     return 0;
 }
