@@ -23,6 +23,49 @@ int processFlight(char* filename, Flight flights[], int* count);
 void displayLeastFareDetails(Flight flights[], int count);
 
 
+int main(void)
+{
+    FILE* fp;
+    char filename[MAX_FILES][MAX_NAME];
+    Flight flights[MAX_DATA];
+    int count = 0;
+
+    // Read filenames from flights.txt
+    fp = fopen("flights.txt", "r");
+    if (fp == NULL)
+    {
+        printf("Error: Unable to open flights.txt\n");
+        return 1;
+    }
+    while (fscanf(fp, "%s\n", filename[count]) != EOF && count < MAX_FILES)
+    {
+        count++;
+    }
+    fclose(fp);
+
+    // Process each flight file and parse data
+    int k, j, status;
+    for (k = 0; k < count; k++)
+    {
+        status = processFlight(filename[k], flights, &j);
+        if (status != 0)
+        {
+            printf("Error: Unable to process %s\n", filename[k]);
+            continue;
+        }
+        if (j > 0)
+        {
+            // Display least fare details for first 100 datasets
+            printf("\nFlight details for first 100 datasets:\n");
+            displayLeastFareDetails(flights, j);
+        }
+    }
+
+    return 0;
+}
+
+
+
 int parseLine(char* line, Flight* flight)
 {
     char* token;
