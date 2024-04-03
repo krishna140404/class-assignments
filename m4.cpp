@@ -29,7 +29,7 @@ int main(void)
     Flight flights[MAX_DATA];
     int count = 0;
 
-    // Read filenames from flights.txt
+    
     fp = fopen("flights.txt", "r");
     if (fp == NULL)
     {
@@ -42,7 +42,7 @@ int main(void)
     }
     fclose(fp);
 
-    // Process each flight file and parse data
+    
     int k, j, status;
     for (k = 0; k < count; k++)
     {
@@ -54,7 +54,7 @@ int main(void)
         }
         if (j > 0)
         {
-            // Display least fare details for first 100 datasets
+           
             printf("\nFlight details for first 100 datasets:\n");
             displayLeastFareDetails(flights, j);
         }
