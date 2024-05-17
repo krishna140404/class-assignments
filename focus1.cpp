@@ -21,43 +21,6 @@ struct FlightInfo {
     char* destination;
     char* date;
 };
-void fillFlightInfo(struct FlightInfo* flight, char*, char*);
-void printFlightInfo(struct FlightInfo* flights);
-int main() {
-    struct FlightInfo flights[10];
-    char destination[30] = "";
-    char date[30] = "";
-
-    printf("Enter destination and date for 10 flights (each less than 30 characters):\n");
-    for (int i = 0; i < 10; i++) {
-
-        printf("Flight %d:\n", i + 1);
-        fgets(destination, sizeof(destination), stdin);
-        fgets(date, sizeof(date), stdin);
-        destination[strcspn(destination, "\n")] = '\0';
-        date[strcspn(date, "\n")] = '\0';
-        fillFlightInfo(&flights[i], destination, date);
-    }
-
-    printFlightInfo(flights); // Print flight information
-
-
-    free(flights->destination);
-    free(flights->date);
-    return 0;
-}
-
-
-void fillFlightInfo(struct FlightInfo* flight, char* destination, char* date) {
-    flight->destination = (char*)malloc(31);
-    if (flight->destination != NULL) {
-        strncpy(flight->destination, destination, strlen(destination) + 1);
-    }
-    flight->date = (char*)malloc(31);
-    if (flight->date != NULL) {
-        strncpy(flight->date, date, strlen(date) + 1);
-    }
-}
 
 
 void printFlightInfo(struct FlightInfo* flights) {
