@@ -22,6 +22,10 @@ struct FlightInfo {
     char* date;
 };
 
+
+void fillFlightInfo(struct FlightInfo* flight, char*, char*);
+void printFlightInfo(struct FlightInfo* flights);
+
 int main() 
 {
     struct FlightInfo flights[10];
