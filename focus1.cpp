@@ -23,9 +23,26 @@ struct FlightInfo {
 };
 
 
-void printFlightInfo(struct FlightInfo* flights) {
+void fillFlightInfo(struct FlightInfo* flight, char* destination, char* date) 
+{
+    flight->destination = (char*)malloc(31);
+    if (flight->destination != NULL)
+    {
+        strcpy(flight->destination, destination, strlen(destination) + 1);
+    }
+    flight->date = (char*)malloc(31);
+    if (flight->date != NULL) 
+    {
+        strcpy(flight->date, date, strlen(date) + 1);
+    }
+}
+
+
+void printFlightInfo(struct FlightInfo* flights)
+{
     printf("%-35s%-35s\n", "Destination", "Date");
-    for (int k = 0; k < 10; k++) {
+    for (int k = 0; k < 10; k++)
+    {
         printf("%-35s%-35s\n", flights[k].destination, flights[k].date);
     }
 }
