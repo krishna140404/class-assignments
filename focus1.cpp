@@ -1,3 +1,10 @@
+/*
+* FILE : focus1.cpp
+* PROJECT : focus Assignment 1
+* PROGRAMMER : krishna kachhiapatel
+* FIRST VERSION : 2024-05-17
+* DESCRIPTION : Write a program to for memory allocation.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
