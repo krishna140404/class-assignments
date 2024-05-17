@@ -1,41 +1,30 @@
-// focus1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #pragma warning(disable: 4996) 
-struct FlightInfo {
+//defination of structure called flight 
+struct FlightInfo
+{   // intialising nessesary variables 
     char* destination;
     char* date;
 };
 
-
+// prototypes of function 
 void fillFlightInfo(struct FlightInfo* flight, char*, char*);
 void printFlightInfo(struct FlightInfo* flights);
-
-int main() 
-{
+//main function 
+int main(void) 
+{   // initialising structs and variables for better understandment 
     struct FlightInfo flights[10];
     char destination[30] = "";
     char date[30] = "";
 
+    //displaying guiding lines 
     printf("Enter destination and date for 10 flights (each less than 30 characters):\n");
+    //using for loop in order to enter data specific data from user  
     for (int k = 0; k < 10; k++) 
     {
-
+        //writing code for entering data 
         printf("Flight %d:\n", k + 1);
         fgets(destination, sizeof(destination), stdin);
         fgets(date, sizeof(date), stdin);
@@ -44,18 +33,30 @@ int main()
         fillFlightInfo(&flights[k], destination, date);
     }
 
+    //calling function
     printFlightInfo(flights); 
 
-
+    //freeing up memories 
     free(flights->destination);
     free(flights->date);
     return 0;
 }
 
+/*
+Function: fillFlightInfo()
 
+Parameter: struct FlightInfo* flight : this parameter refer to the struct which contains the data of user info 
+           char* destination : purticularlt refers to destination of flight 
+           char* date : purticularly refers to the date of flight 
+
+Return Value: none 
+
+Description: this function describes memory allocation of the data of flights , date and , destination. 
+*/
 void fillFlightInfo(struct FlightInfo* flight, char* destination, char* date) 
 {
     flight->destination = (char*)malloc(31);
+    // using conditional statement to decide that wether the information of destination and date is entered 
     if (flight->destination != NULL)
     {
         strcpy(flight->destination, destination, strlen(destination) + 1);
@@ -66,10 +67,18 @@ void fillFlightInfo(struct FlightInfo* flight, char* destination, char* date)
         strcpy(flight->date, date, strlen(date) + 1);
     }
 }
+/*
+Function: PrintFlightInfo()
 
+Parameter: struct FlightInfo* flight : this parameter refer to the struct which contains the data of user info
+
+Return Value: none
+
+Description: this function is created to serve the purpose of displaying all the information on screen. 
+*/
 
 void printFlightInfo(struct FlightInfo* flights)
-{
+{   //displaying all the information while using printf() function 
     printf("%-35s%-35s\n", "Destination", "Date");
     for (int k = 0; k < 10; k++)
     {
