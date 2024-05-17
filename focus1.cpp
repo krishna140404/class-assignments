@@ -25,7 +25,7 @@ struct FlightInfo {
 
 void printFlightInfo(struct FlightInfo* flights) {
     printf("%-35s%-35s\n", "Destination", "Date");
-    for (int i = 0; i < 10; i++) {
-        printf("%-35s%-35s\n", flights[i].destination, flights[i].date);
+    for (int k = 0; k < 10; k++) {
+        printf("%-35s%-35s\n", flights[k].destination, flights[k].date);
     }
 }
